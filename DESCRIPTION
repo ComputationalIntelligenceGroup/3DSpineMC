@@ -1,0 +1,30 @@
+Package: SpineMC
+Type: Package
+Title: Dendritic spine model-based clustering
+Version: 0.1
+Date: 2017-10-01
+Author: Sergio Luengo-Sanchez
+Maintainer: Sergio Luengo-Sanchez <sluengo@fi.upm.es>
+Description: Given a dataset of features computed according to the 3DspineMFE library this package performs model-based clustering over the morphology of dendritic spines. 
+License: GPL >=2
+Depends: R (>= 3.2.0),
+        mclust,
+        foreign,
+        ROSE,
+        rgl,
+        MASS,
+        tmvtnorm,
+        ggplot2,
+        Rvcg(>= 0.13),
+        Rcpp,
+        MixSim,
+        scales,
+        tmvtnorm,
+        geometry,
+        data.table
+LazyData: TRUE
+LinkingTo: Rcpp
+Imports: Rcpp
+RoxygenNote: 6.0.1
+Suggests: knitr
+VignetteBuilder: knitr
