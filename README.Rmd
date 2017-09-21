@@ -1,14 +1,6 @@
----
-title: "3DSpineMC User's Guide"
-author: "Sergio Luengo-Sanchez"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Spine clustering}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
+# 3DSpineMC User's Guide
 
-## Abstract
+## Description
 
 Dendritic spines are small membranous protusions. They are receptors of excitatory synapses placed on the surface of some neuronal
 dendrites. Their morphology have captured the attention of neuroscientific community because it has been associated with brain funcionality. For example, it has been claimed that thin spines contribute to learning, while the biggest and steady spines are linked to the memory process. Disturbances of their morphology or density have been related to mental disorders such as schizophrenia, dementia or mental retardation. Thus, the clustering of dendritic spines is an interest approach to better understand the previously describe relation between morphology and functionality. The present R package provides a method to cluster and analize 3D dendritic spines according to their morphology.
@@ -57,7 +49,7 @@ After that, 3DSpineMC is loaded  in the R workspace so you can start to cluster 
 Lets start writing `?SpineMC`  into the R console. The page that appears in front of you provides general information about the package. Next, if you click on the hyperlink *Index* at the end of the page you will be redirected to the index page where you can see all the functions of the software and a short description of each one of them. If you click on any of them, it is shown an extended description of the function and the parameters.
 
 ### Clustering
-The common executing flow is based on obtaining a probabilistic clustering from the features computed on the surface of the spines with multiresolution Reeb graph. This dataset can be generated from the library [3DSpineMC](https://github.com/ComputationalIntelligenceGroup/3DSpineMC)
+The common executing flow is based on obtaining a probabilistic clustering from the features computed on the surface of the spines with multiresolution Reeb graph. This dataset can be generated from the library [3DSpineMFE](https://github.com/ComputationalIntelligenceGroup/3DSpineMFE).
 
 ```{r,eval=FALSE}
 model <- spineClustering(csvSpines = system.file("extdata", "data.csv", package = "SpineMC"), numClusters = c(2:10), scale = F)

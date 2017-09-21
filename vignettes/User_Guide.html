@@ -10,10 +10,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="Sergio Luengo-Sanchez" />
 
 
-<title>3DSpineMC User’s Guide</title>
+<title></title>
 
 
 
@@ -67,13 +66,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<h1 class="title toc-ignore">3DSpineMC User’s Guide</h1>
-<h4 class="author"><em>Sergio Luengo-Sanchez</em></h4>
 
 
 
-<div id="abstract" class="section level2">
-<h2>Abstract</h2>
+<div id="dspinemc-users-guide" class="section level1">
+<h1>3DSpineMC User’s Guide</h1>
+<div id="description" class="section level2">
+<h2>Description</h2>
 <p>Dendritic spines are small membranous protusions. They are receptors of excitatory synapses placed on the surface of some neuronal dendrites. Their morphology have captured the attention of neuroscientific community because it has been associated with brain funcionality. For example, it has been claimed that thin spines contribute to learning, while the biggest and steady spines are linked to the memory process. Disturbances of their morphology or density have been related to mental disorders such as schizophrenia, dementia or mental retardation. Thus, the clustering of dendritic spines is an interest approach to better understand the previously describe relation between morphology and functionality. The present R package provides a method to cluster and analize 3D dendritic spines according to their morphology.</p>
 </div>
 <div id="prerequirements" class="section level2">
@@ -176,7 +175,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Lets start writing <code>?SpineMC</code> into the R console. The page that appears in front of you provides general information about the package. Next, if you click on the hyperlink <em>Index</em> at the end of the page you will be redirected to the index page where you can see all the functions of the software and a short description of each one of them. If you click on any of them, it is shown an extended description of the function and the parameters.</p>
 <div id="clustering" class="section level3">
 <h3>Clustering</h3>
-<p>The common executing flow is based on obtaining a probabilistic clustering from the features computed on the surface of the spines with multiresolution Reeb graph. This dataset can be generated from the library <a href="https://github.com/ComputationalIntelligenceGroup/3DSpineMC">3DSpineMC</a></p>
+<p>The common executing flow is based on obtaining a probabilistic clustering from the features computed on the surface of the spines with multiresolution Reeb graph. This dataset can be generated from the library <a href="https://github.com/ComputationalIntelligenceGroup/3DSpineMFE">3DSpineMFE</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">spineClustering</span>(<span class="dt">csvSpines =</span> <span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;data.csv&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;SpineMC&quot;</span>), <span class="dt">numClusters =</span> <span class="kw">c</span>(<span class="dv">2</span>:<span class="dv">10</span>), <span class="dt">scale =</span> F)</code></pre></div>
 <p>This computation can take several days when the dataset has several thousands of rows. Also enable the <code>scale</code> flag can increase the computational time considerably.</p>
 </div>
@@ -274,6 +273,7 @@ temp_path&lt;-<span class="kw">tempdir</span>()
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Show the number of clusters that maximize BIC</span>
 <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;The number of clusters is&quot;</span>,model$G))</code></pre></div>
 <pre><code>## [1] &quot;The number of clusters is 4&quot;</code></pre>
+</div>
 </div>
 </div>
 
