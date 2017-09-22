@@ -99,7 +99,7 @@ write.csv(model$data[model$classification==1,],file="temp_path/cluster1.csv")
 
 ### MDS
 
-To make visualization and interpretation of the groups of dendritic spines easier, distance between clusters in a 4D space can be scaled to a 2D space with multidimensional scaling. The next figure shows how close is the morphology of a cluster respect the morphology of the other clusters. Additionally, in those cases where the cluster is represented just as a point that means that all the spines in the cluster belongs to that cluster with a probability close to 1. However when there is a continuum of points between two clusters that means that there are some spines whose morphology is a mix of the two clusters and cannot be assigned to any of them certainly.  
+To make visualization and interpretation of the groups of dendritic spines easier, distance between clusters in a n-dimensional space can be scaled to a 2-dimensional space with multidimensional scaling. The next figure shows how close is the morphology of a cluster respect the morphology of the other clusters. Additionally, in those cases where the cluster is represented just as a point that means that all the spines in the cluster belongs to that cluster with a probability close to 1. However when there is a continuum of points between two clusters that means that there are some spines whose morphology is a mix of the two clusters and cannot be assigned to any of them certainly.  
 
 ```{r,fig.width=7.2,fig.height=7.2}
 MDS<-computeMDS(model,2)
