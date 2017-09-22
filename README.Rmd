@@ -57,8 +57,8 @@ model <- spineClustering(csvSpines = system.file("extdata", "data.csv", package 
 
 This computation can take several days when the dataset has several thousands of rows. Also enable the `scale` flag can increase the computational time considerably.
 
-###Results
-The previous computation returns as result a probabilistic model that contains the probability of belonging of each spine to each cluster. It is an `mclust` object (see (mclust)[https://cran.r-project.org/web/packages/mclust/vignettes/mclust.html] for more information). Some information about the groups of spines can be extracted from it.
+### Results
+The previous computation returns as result a probabilistic model that contains the probability of belonging of each spine to each cluster. It is an `mclust` object (see [mclust](https://cran.r-project.org/web/packages/mclust/vignettes/mclust.html) for more information). Some information about the groups of spines can be extracted from it.
 
 For example it can be obtained an histogram of the number of spines by cluster running:
 ```{r,fig.width=7.2,fig.height=5}
