@@ -57,7 +57,7 @@ After that, 3DSpineMC is loaded  in the R workspace so you can start to cluster 
 Lets start writing `?SpineMC`  into the R console. The page that appears in front of you provides general information about the package. Next, if you click on the hyperlink *Index* at the end of the page you will be redirected to the index page where you can see all the functions of the software and a short description of each one of them. If you click on any of them, it is shown an extended description of the function and the parameters.
 
 ### Clustering
-The common executing flow is based on obtaining a probabilistic clustering from the features computed on the surface of the spines with multiresolution Reeb graph. This dataset can be generated from the library [3DSpineMFE](https://github.com/ComputationalIntelligenceGroup/3DSpineMFE)
+The common executing flow is based on obtaining a probabilistic clustering from the features computed on the surface of the spines with multiresolution Reeb graph. This dataset can be generated from the library [3DSpineMFE](https://github.com/ComputationalIntelligenceGroup/3DSpineMFE).
 
 ```{r,eval=FALSE}
 model <- spineClustering(csvSpines = system.file("extdata", "data.csv", package = "SpineMC"), numClusters = c(2:10), scale = F)
@@ -99,7 +99,7 @@ write.csv(model$data[model$classification==1,],file="temp_path/cluster1.csv")
 
 ### MDS
 
-To make visualization and interpretation of the groups of dendritic spines easier, distance between clusters in a n-dimensional space can be scaled to a 2-dimensional space with multidimensional scaling. The next figure shows how close is the morphology of a cluster respect the morphology of the other clusters. Additionally, in those cases where the cluster is represented just as a point that means that all the spines in the cluster belongs to that cluster with a probability close to 1. However when there is a continuum of points between two clusters that means that there are some spines whose morphology is a mix of the two clusters and cannot be assigned to any of them certainly.  
+To make visualization and interpretation of the groups of dendritic spines easier, distance between clusters in a n-dimensional space can be scaled to a 2-dimensional space with multidimensional scaling. It represents the similarity between the morphology of the clusters. Clusters that are close in the MDS plot present analogous shapes. Additionally, in those cases where the cluster is represented just as a point that means that all the spines in the cluster belongs to that cluster with a probability close to 1. However when there is a continuum of points between two clusters that means that there are some spines whose morphology is a mix of the two clusters and cannot be assigned to any of them certainly.  
 
 ```{r,fig.width=7.2,fig.height=7.2}
 MDS<-computeMDS(model,2)
@@ -107,7 +107,8 @@ plotMDS(model,MDS)
 ```
 
 ### Overlapping
-Ideally, clustering should find well defined clusters. Thus, overlapping between cluster is undesirable. To measure the overlapping between cluster the next function can be applied:
+
+Ideally, clustering should find well defined clusters. Thus, overlapping between clusters is undesirable. To measure the overlapping between pairs of clusters the next function can be applied:
 
 ```{r,eval=F}
 computeOverlapping(model)
@@ -118,6 +119,7 @@ library(knitr)
 kable(computeOverlapping(model))
 ```
 
+### BIC score
 
 BIC score is the heuristic score used by the algorithm to select the number of clusters. The higher is the score, the better is the cluster. To plot the BIC score obtained for each number of the clusters evaluated during the clustering process you can run.
 
@@ -127,4 +129,3 @@ plotBIC(model)
 
 #Show the number of clusters that maximize BIC
 print(paste("The number of clusters is",model$G))
-```
