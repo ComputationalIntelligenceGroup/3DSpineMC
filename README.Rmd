@@ -10,7 +10,7 @@ dendrites. Their morphology have captured the attention of neuroscientific commu
 This software has been developed as an R package. Consequently, it is needed an R enviroment and internet connectivity to download additional package dependencies. R software can be downloaded from <http://cran.rstudio.com/index.html>. We suggested to install 64 bits version of R (if applicable) and RStudio (<https://www.rstudio.com/products/rstudio/download/>). 
 
 ## Package installation
-Some R packages are needed to perform some specific tasks releated with 3D processing, data management, or modeling. They must be installed thorugh the command `install.packages("name_of_the_package")` to use this package. The R dependencies of the package are:
+Some R packages are needed to perform some specific tasks releated with 3D processing, data management, or modeling. They must be installed through the command `install.packages("name_of_the_package")` to be able to use 3DSpineMC. The R dependencies of the package are:
 
 |Package|Version|License|
 |-------|-------|-------|
@@ -46,10 +46,10 @@ library(SpineMC)
 After that, 3DSpineMC is loaded  in the R workspace so you can start to cluster dendritic spines and analyze the results. In the next section we show some cases of use to exploit the possibilities that the package provides. To test the package, a model and a dataset of morphological features (with some added white noise) are included as part of the package to try the functionalities.
 
 ## Using 3DSpineMC package
-Lets start writing `?SpineMC`  into the R console. The page that appears in front of you provides general information about the package. Next, if you click on the hyperlink *Index* at the end of the page you will be redirected to the index page where you can see all the functions of the software and a short description of each one of them. If you click on any of them, it is shown an extended description of the function and the parameters.
+Lets start writing `?SpineMC` into the R console. The page that appears in front of you provides general information about the package. Next, if you click on the hyperlink *Index* at the end of the page you will be redirected to the index page where you can see all the functions of the software and a short description of each one of them. If you click on any of them, it is shown an extended description of the function and the parameters.
 
 ### Clustering
-The common executing flow is based on obtaining a probabilistic clustering from the features computed on the surface of the spines with multiresolution Reeb graph. This dataset can be generated from the library [3DSpineMFE](https://github.com/ComputationalIntelligenceGroup/3DSpineMFE).
+The common executing flow is based on obtaining a probabilistic clustering from the features computed on the surface of the spines with multiresolution Reeb graph. This dataset can be generated from the library [3DSpineMFE](https://github.com/ComputationalIntelligenceGroup/3DSpineMFE). Given a dataset, the model is computed according to the next line:
 
 ```{r,eval=FALSE}
 model <- spineClustering(csvSpines = system.file("extdata", "data.csv", package = "SpineMC"), numClusters = c(2:10), scale = F)
@@ -58,7 +58,7 @@ model <- spineClustering(csvSpines = system.file("extdata", "data.csv", package 
 This computation can take several days when the dataset has several thousands of rows. Also enable the `scale` flag can increase the computational time considerably.
 
 ### Results
-The previous computation returns as result a probabilistic model that contains the probability of belonging of each spine to each cluster. It is an `mclust` object (see [mclust](https://cran.r-project.org/web/packages/mclust/vignettes/mclust.html) for more information). Some information about the groups of spines can be extracted from it.
+The previous computation returns as result a probabilistic model that contains the probability of belonging of each spine to each cluster. It is an `mclust` object (see [mclust](https://cran.r-project.org/web/packages/mclust/vignettes/mclust.html) for more information). Some knowledge about the groups of spines can be extracted from it.
 
 For example it can be obtained an histogram of the number of spines by cluster running:
 ```{r,fig.width=7.2,fig.height=5}
@@ -76,11 +76,11 @@ Also it can be checked the degree of membership of each spine to each cluster. E
 #Get membership probability
 membership <- data.frame(model$z)
 colnames(membership) <- paste("Cluster",1:model$G)
+
 #Show ten first
 membership[1:10, ]
 
 ```
-
 
 Also it is possible to export spines by its cluster to csv file for future research. Just run the following lines:
 ```{r, eval=F}
@@ -91,7 +91,7 @@ write.csv(model$data[model$classification==1,],file="temp_path/cluster1.csv")
 
 ### MDS
 
-To make visualization and interpretation of the groups of dendritic spines easier, distance between clusters in a n-dimensional space can be scaled to a 2-dimensional space with multidimensional scaling. It represents the similarity between the morphology of the clusters. Clusters that are close in the MDS plot present analogous shapes. Additionally, in those cases where the cluster is represented just as a point that means that all the spines in the cluster belongs to that cluster with a probability close to 1. However when there is a continuum of points between two clusters that means that there are some spines whose morphology is a mix of the two clusters and cannot be assigned to any of them certainly.  
+To make visualization and interpretation of the groups of dendritic spines easier, distance between clusters in a n-dimensional space can be scaled to a 2-dimensional space with multidimensional scaling. It represents the similarity between the morphology of the clusters. Clusters that are close in the MDS plot present analogous shapes. Additionally, in those cases where the cluster is represented just as a point that means that all the spines in the cluster belongs to that cluster with a probability close to 1. However, when there is a continuum of points between two clusters, it suggest that there are some spines whose morphology is a mix of the two clusters and cannot be assigned to any of them certainly.  
 
 ```{r,fig.width=7.2,fig.height=7.2}
 MDS<-computeMDS(model,2)
@@ -105,7 +105,7 @@ Ideally, clustering should find well defined clusters. Thus, overlapping between
 ```{r,eval=F}
 computeOverlapping(model)
 ```
-As result a table is generated where each value is the degree of overlapping between each pair of cluster where 1 is total overlapping and 0 is not overlap. As it can be expected, the diagonal of the table is 1 in all cases because it is measuring the overlapping of each cluster with itself.
+As result a table is generated where each value is the degree of overlapping between each pair of cluster where 1 is total overlapping and 0 that there is not overlap at all. As it can be expected, the diagonal of the table is 1 in all cases because it is measuring the overlapping of each cluster with itself.
 ```{r kable, echo=F}
 library(knitr)
 kable(computeOverlapping(model))
